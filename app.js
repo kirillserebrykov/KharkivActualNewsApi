@@ -9,9 +9,15 @@ let   html = [];
         let parserBrowser = async () =>{
         let flag = true
         let counter = 0
-        const browser = await puppeteer.launch({headless: true, devtools: true, args: ['--no-sandbox'] });
+        const browser = await puppeteer.launch({headless: true, devtools: true,
+            args: [
+                "--incognito",
+                "--no-sandbox",
+                "--single-process",
+                "--no-zygote"
+            ], });
         const page = await browser.newPage();
-        while (flag){
+        while  (flag){
 
             await page.goto(`https://www.city.kharkov.ua/ru/novosti.html?p=${counter * 10 }`);
             await page.waitForSelector("a.name")
