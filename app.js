@@ -9,8 +9,8 @@ let   html = [];
         let parserBrowser = async () =>{
         let flag = true
         let counter = 0
-        const browser = await puppeteer.launch({headless: false, devtools: true,   ignoreDefaultArgs: ['--disable-extensions'],
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],});
+        const browser = await puppeteer.launch({headless: false, devtools: true,
+            args: ["--no-sandbox"]});
         const page = await browser.newPage();
         while (flag){
             try {
