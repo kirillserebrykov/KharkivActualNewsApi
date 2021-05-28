@@ -18,7 +18,10 @@ let   html = [];
                 '--no-sandbox',
                 '--no-zygote',
                 '--single-process',
-            ],});
+            ],
+            ignoreDefaultArgs: ['--disable-extensions'],
+
+        });
         const page = await browser.newPage();
         while (flag){
             try {
