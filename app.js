@@ -12,6 +12,8 @@ let   html = [];
         const browser = await puppeteer.launch({headless: true, devtools: true, });
         const page = await browser.newPage();
         while (flag){
+            try {
+
 
             await page.goto(`https://www.city.kharkov.ua/ru/novosti.html?p=${counter * 10 }`);
             await page.waitForSelector("a.name")
@@ -59,17 +61,20 @@ let   html = [];
             await  resar.push(html)
             counter++
             if(counter >= 5) {
-               await browser.close()
+                await browser.close()
                 flag = false
                 counter = 0
 
+            }}catch (e) {
+                console.log(e)
 
-            }}}
+            }
+            }}
 
-        parserBrowser()
+        parserBrowser().catch(e =>{console.log(e)})
         setInterval(async () =>{
             resar = []
-           parserBrowser()
+           parserBrowser().catch(e =>{console.log(e)})
         }, 300000 )
 
     } catch (e) {
