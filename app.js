@@ -9,35 +9,30 @@ let   html = [];
         let parserBrowser = async () =>{
         let flag = true
         let counter = 0
-        const browser = await puppeteer.launch({headless: true, devtools: true,
-            args: [
-                "--incognito",
-                "--no-sandbox",
-                "--single-process",
-                "--no-zygote"
-            ], });
+        const browser = await puppeteer.launch({headless: true, devtools: true, });
         const page = await browser.newPage();
-        while  (flag){
+        while (flag){
 
             await page.goto(`https://www.city.kharkov.ua/ru/novosti.html?p=${counter * 10 }`);
             await page.waitForSelector("a.name")
 
              html = await page.evaluate(async () => {
 
-                let listElOne = []
-                let ListNews = []
-                let listElObjOne = {}
-                let listElObjTow = {}
-                let listElTow = []
-                let listElObjThree = {}
-                let listElThree = []
+                let listNewsOne = []
+                let ListNewsGloal = []
+                let listNewsTow = []
+                let listNewsThree = []
+                let listNewsObjOne = {}
+                let listNewsObjTow = {}
+                let listNewsObjThree = {}
+
 
 
                 let listAr = await document.querySelectorAll(".container_news")
                 await listAr.forEach(el => {
-                    listElOne = [...el.children[0].children[1].children ]
-                    el.children[0].children[4] === undefined ? listElTow = undefined : listElTow = [...el.children[0].children[4].children]
-                    el.children[0].children[7] === undefined ? listElThree = undefined : listElThree = [...el.children[0].children[7].children]
+                    listNewsOne = [...el.children[0].children[1].children ]
+                    el.children[0].children[4] === undefined ? listNewsTow = undefined : listNewsTow = [...el.children[0].children[4].children]
+                    el.children[0].children[7] === undefined ? listNewsThree = undefined : listNewsThree = [...el.children[0].children[7].children]
 
                 })
 
@@ -55,41 +50,41 @@ let   html = [];
                             href: li.children[0].children[0].href,
                         }
 
-                        ListNews.push(ConstructorObj)})}
-               Constructor(listElOne,listElObjOne,OneDete)
-              listElTow === undefined ?   "" :  Constructor(listElTow,listElObjTow,TowDate)
-              listElThree === undefined ? "" :  Constructor(listElThree,listElObjThree,TheeDate)
-                return ListNews
+                        ListNewsGloal.push(ConstructorObj)})}
+              listNewsOne === undefined ?   undefined :  Constructor(listNewsOne,listNewsObjOne,OneDete)
+              listNewsTow === undefined ?   undefined :  Constructor(listNewsTow,listNewsObjTow,TowDate)
+              listNewsThree === undefined ? undefined :  Constructor(listNewsThree,listNewsObjThree,TheeDate)
+                return ListNewsGloal
             })
             await  resar.push(html)
             counter++
             if(counter >= 5) {
                await browser.close()
                 flag = false
-                counter = 0}}}
+                counter = 0
 
-      parserBrowser().then( resar.pop(html))
 
+            }}}
+
+        parserBrowser()
         setInterval(async () =>{
+            resar = []
            parserBrowser()
-           resar.pop(html)
-        }, 120000  )
+        }, 300000 )
 
     } catch (e) {
         console.log(e)
         await  browser.close()
-
     }})()
 
 
 app.get('/news', async function(req, res) {
     res.send(JSON.stringify(resar ));
-    console.log(res)
 });
 
 
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Example app listening at http://localhost:${port}/news`)
 })
 
