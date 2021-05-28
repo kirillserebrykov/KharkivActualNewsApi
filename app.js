@@ -10,7 +10,7 @@ let   html = [];
         let flag = true
         let counter = 0
         const browser = await puppeteer.launch({headless: false, devtools: true,
-            args: ["--no-sandbox"]});
+            args: ["--no-sandbox", "--disabled-setupid-sandbox"],});
         const page = await browser.newPage();
         while (flag){
             try {
