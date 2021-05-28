@@ -10,7 +10,15 @@ let   html = [];
         let flag = true
         let counter = 0
         const browser = await puppeteer.launch({headless: false, devtools: true,
-            args: ["--no-sandbox", "--disabled-setupid-sandbox"],});
+            args: [
+                '--disable-gpu',
+                '--disable-dev-shm-usage',
+                '--disable-setuid-sandbox',
+                '--no-first-run',
+                '--no-sandbox',
+                '--no-zygote',
+                '--single-process',
+            ],});
         const page = await browser.newPage();
         while (flag){
             try {
