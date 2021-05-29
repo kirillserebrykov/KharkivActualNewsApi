@@ -95,6 +95,6 @@ app.get('/news', async function(req, res) {
 
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}/news`)
+    console.log(` app listening at http://localhost:${port}/news`)
 })
 
