@@ -83,6 +83,11 @@ let   html = [];
     }})()
 
 
+
+
+
+
+
 app.get('/news', async function(req, res) {
     res.send(JSON.stringify(resar ));
 });
