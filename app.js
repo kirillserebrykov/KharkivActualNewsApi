@@ -10,21 +10,12 @@ let   html = [];
         let flag = true
         let counter = 0
         const browser = await puppeteer.launch({headless: false, devtools: true,
-            args: [
-                '--disable-gpu',
-                '--disable-dev-shm-usage',
-                '--disable-setuid-sandbox',
-                '--no-first-run',
-                '--no-sandbox',
-                '--no-zygote',
-                '--single-process',
-            ],
-            ignoreDefaultArgs: ['--disable-extensions'],
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
 
         });
         const page = await browser.newPage();
         while (flag){
-            try {
+
 
 
             await page.goto(`https://www.city.kharkov.ua/ru/novosti.html?p=${counter * 10 }`);
@@ -76,9 +67,6 @@ let   html = [];
                 await browser.close()
                 flag = false
                 counter = 0
-
-            }}catch (e) {
-                console.log(e)
 
             }
             }}
