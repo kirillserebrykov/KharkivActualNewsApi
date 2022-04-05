@@ -14,7 +14,7 @@ let accumulator = [];
       let flag = true;
       let counter = 0;
       const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
         devtools: true,
         args: ["--no-sandbox", "--disable-setuid-sandbox"],
       });
