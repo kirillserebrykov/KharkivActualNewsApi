@@ -2,9 +2,6 @@
   "name": "parser",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js",
   "type": "module",
   "main": "app.js",
   "scripts": {
