@@ -15,7 +15,7 @@ let accumulator = [];
       let flag = true;
       let counter = 0;
       const browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
         devtools: true,
         args: ["--no-sandbox", "--disable-setuid-sandbox"],
       });
@@ -23,7 +23,7 @@ let accumulator = [];
       await page.setDefaultNavigationTimeout(0);
 
       while (flag) {
-        await page.goto(`${URL}?p=${counter * 10}`);
+        await page.goto(`${URL}?p=${counter * 10}`, {waitUntil: "networkidle2"});
         await page.waitForSelector(SELECTOR);
         await accumulator.push(await ParsePage(page));
         counter++;
